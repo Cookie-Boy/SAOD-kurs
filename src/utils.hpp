@@ -3,10 +3,10 @@
 #include <iostream>
 #include <string>
 
-
 #define FILE_NAME "utils/testBase4.dat"
 #define SIZE 4000
 #define PAGES (SIZE / 20)
+#define NO_PAGE 201
 
 using namespace std;
 

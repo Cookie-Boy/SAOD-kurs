@@ -30,33 +30,3 @@ void digitalSort(List *&head)
         p->next = NULL;
     }
 }
-
-void cyclePrint(List *head, List *copy)
-{
-    while (true)
-    {
-        system("cls");
-        cout << "What would you like to see? (sorted database - 1, unsorted - 2, exit - 0): ";
-
-        char key = _getch();
-        if (key == '1')
-        {
-            system("cls");
-            printList(copy, 1);
-            while (int number = getPageNumber(PAGES))
-                printList(copy, number);
-        }
-        else if (key == '2')
-        {
-            system("cls");
-            printList(head, 1);
-            while (int number = getPageNumber(PAGES))
-                printList(head, number);
-        }
-        else if (key == '0')
-        {
-            system("cls");
-            return;
-        }
-    }
-}

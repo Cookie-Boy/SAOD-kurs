@@ -14,4 +14,3 @@ typedef struct queue
 } Queue;
 
 void digitalSort(List *&head);
-void cyclePrint(List *head, List *copy);

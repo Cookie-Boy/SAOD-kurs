@@ -1,4 +1,6 @@
+#include <conio.h>
 #include <utils.hpp>
+
 
 int fillList(List **head)
 {
@@ -50,7 +52,7 @@ bool isNumber(string string)
         return false;
 
     for (char symbol : string)
-        if (!isdigit(symbol))
+        if (!isdigit(symbol) && symbol != '-')
             return false;
 
     return true;
@@ -58,32 +60,37 @@ bool isNumber(string string)
 
 int getPageNumber(int numberOfPages)
 {
-    while (true)
-    {
-        cout << "Enter page number (0 to exit): ";
-        string key;
-        int number = -1;
-        getline(cin, key);
+    cout << "-1: to unsort database" << endl;
+    cout << "-2: to sort database" << endl;
+    cout << "-3: to build a queue" << endl;
+    cout << "-4: to build a tree" << endl;
+    cout << "-5: to find a value in the tree" << endl;
+    cout << "-6: to show a code table" << endl;
+    cout << "Enter page number (0 to exit): ";
+    string key;
+    int number = NO_PAGE;
+    getline(cin, key);
 
-        bool result = isNumber(key);
+    if (isNumber(key))
+        number = stoi(key);
 
-        if (result)
-            number = stoi(key);
-
-        if (!result || number > numberOfPages)
-        {
-            cout << "Error: expected number between 1 and " << numberOfPages << "." << endl;
-            continue;
-        }
-
+    if (number < 0 && number >= -6)
         return number;
+
+    if (number > numberOfPages || number < 0)
+    {
+        cout << "Error: expected number between 1 and " << numberOfPages << "." << endl;
+        number = NO_PAGE;
+        cout << "Press any key to continue...";
+        _getch();
     }
+
+    return number;
 }
 
 void printTableHeader(int number, bool isTree)
 {
-    system("cls");
-    cout << "Page number " << number << endl
+    cout << "Page number: " << number << endl
          << endl;
     cout << "\t\b\bIndex\t|\t";
     cout << "Full name of the citizen\t|\t";

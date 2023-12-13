@@ -122,3 +122,30 @@ double getAverageLength(double *P, int *L, int n)
         sum += P[i] * L[i];
     return sum;
 }
+
+void printCodeTable(vector<unsigned char> &uniqSymbols, unsigned char **C, double *P, int *L, int n)
+{
+    cout << endl;
+    cout.precision(3);
+
+    cout << "\tEntropy\t\t|\tRedundancy\t|\tSum of probabilities\t|\tCharacters" << endl;
+    double entropy = getEntropy(P, n);
+    cout << "\t" << entropy << "\t\t|";
+    cout << "\t" << getAverageLength(P, L, n) - entropy << "\t\t|";
+    cout << "\t\t" << sumP(P, n) << "\t\t|";
+    cout << "\t" << n << endl
+         << endl;
+
+    cout << "Symbol" << setw(25) << "Probability" << setw(20) << "Code word" << setw(30) << "Code word length" << endl;
+    for (int i = 0; i < n; i++)
+    {
+        cout << uniqSymbols[i];
+        cout << setw(30) << P[i];
+        string string;
+        for (int j = 0; j < L[i]; j++)
+            string.push_back(C[i][j]);
+        cout << setw(20) << string;
+        cout << setw(30) << L[i] << endl;
+    }
+    cout << endl;
+}

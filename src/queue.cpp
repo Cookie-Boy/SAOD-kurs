@@ -37,21 +37,19 @@ int buildQueue(List **array, List **&queue, int index, const char *searchKey)
     queue = new List *[count];
     for (int i = index, j = 0; j < count; i++, j++)
         queue[j] = array[i];
-    cout << count << endl;
     return count;
 }
 
-List **getFinalQueue(List **indexArray, int &queueSize)
+bool queueHandler(List **&queue, List **indexArray, int &queueSize, int &numberOfPages)
 {
-    List **queue = NULL;
     while (true)
     {
         system("cls");
-        cout << "Enter search key (0 - exit and save previous): ";
+        cout << "Enter search key (first 3 letters of the last name, 0 - back to the menu): ";
         string stringKey;
         getline(cin, stringKey);
         if (stringKey == "0")
-            return queue;
+            return false;
         const char *searchKey = stringKey.c_str();
         int index = binarySearch(indexArray, SIZE, searchKey);
 
@@ -60,20 +58,18 @@ List **getFinalQueue(List **indexArray, int &queueSize)
             delete[] queue;
             queue = NULL;
             queueSize = buildQueue(indexArray, queue, index, searchKey);
-            int numberOfPages = queueSize / 20;
+            numberOfPages = queueSize / 20;
             int mod = queueSize % 20;
             if (mod > 0)
                 numberOfPages++;
-
-            printQueue(queue, queueSize, 1);
-            while (int number = getPageNumber(numberOfPages))
-                printQueue(queue, queueSize, number);
-            system("cls");
+            return true;
         }
-        else
-        {
-            cout << "Error: user not found!" << endl;
-        }
+        cout << endl
+             << endl
+             << "Error: user not found!";
+        cout << endl
+             << "Press any key to continue...";
+        _getch();
     }
 }
 

@@ -21,4 +21,4 @@ clean:
 	del /Q /F bin/main.exe
 
 run:
-	bin/main.exe
+	./bin/main.exe

@@ -1,8 +1,10 @@
 #pragma once
 
-#include <vector>
 #include <cmath>
+#include <iomanip>
 #include <sys\stat.h>
+#include <vector>
+
 
 #include <utils.hpp>
 
@@ -15,3 +17,4 @@ void createGilbertMooreCode(double *P, double *Q, int *L, int n);
 double sumP(double *P, int n);
 double getEntropy(double *P, int n);
 double getAverageLength(double *P, int *L, int n);
+void printCodeTable(vector<unsigned char> &uniqSymbols, unsigned char **C, double *P, int *L, int n);

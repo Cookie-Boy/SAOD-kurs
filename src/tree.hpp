@@ -18,10 +18,11 @@ struct DBDVertex
 
 void insertToBinaryTree(DBDVertex *&vertex, List **element, int &vr, int &hr, bool &isIncrease);
 void fillNumbers(DBDVertex *vertex);
-void printTree(DBDVertex *root, int treeSize);
-void printTreeAsTable(vector <DBDVertex *> &array, int size, int pageNumber);
+void getTreeTraversal(DBDVertex *root, vector<DBDVertex *> &massiveToShow, int treeSize, int &pages);
+void printTreeAsTable(vector<DBDVertex *> &array, int size, int pageNumber);
 void fillTopToBottom(DBDVertex *vertex, vector<DBDVertex *> &array);
 void fillLeftToRight(DBDVertex *vertex, vector<DBDVertex *> &array);
 void fillBottomToTop(DBDVertex *vertex, vector<DBDVertex *> &array);
 DBDVertex *findVertex(DBDVertex *vertex, char *searchKey);
-void cycleFindVertex(DBDVertex *root);
+void findingVertexHandler(DBDVertex *root, vector<DBDVertex *> &massiveToShow, int &numberOfPages);
+DBDVertex *deleteTree(DBDVertex *vertex);
